@@ -1,0 +1,12 @@
+{ 
+    "domain": "acme.com",
+
+    "sites": [
+        { "name": "alabama", "servers": [{ "host": "web-fe" }, { "host": "be" }] },
+        { "name": "chicago", "servers": [{ "host": "web-fe" }, { "host": "be" }] },
+        { "name": "orlando", "servers": [{ "host": "web-fe" }, { "host": "be" }, { "host": "db"}] }
+  ]
+}
+
+
+
