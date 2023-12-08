@@ -10,6 +10,7 @@ ARCH=$(uname -m)
 case $ARCH in
     # multipass on Mac-M1:
     aarch64) echo "CPU Architecture: Arm64";;
+     x86_64) echo "CPU Architecture: Amd64";;
 
     *) die "Not implemented for architecture '$ARCH'";;
 esac
