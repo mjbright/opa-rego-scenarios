@@ -1,0 +1,9 @@
+{
+    "id":    "90343274e67f",
+    "host":  "pay1",
+    "method": "GET",
+    "path":   "/api/v1/salary/alice",
+    "token": {
+            "user": "jim"
+        }
+}
