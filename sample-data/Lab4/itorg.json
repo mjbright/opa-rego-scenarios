@@ -1,15 +1,22 @@
 {
     "roles": {
+            "rogue_admin":  { "users": [ "rogue" ], "max_salary": 10000 },
             "rh_admin":     { "users": [ "alice" ], "max_salary": 1000 },
             "pay_admin":    { "users": [ "jim"   ], "max_salary": 500 },
             "qa_admin":     { "users": [ "joe"   ], "max_salary": 500 },
             "it_admin":     { "users": [ "fred"  ], "max_salary": 500 },
-            "gen_employee": { "users": [ "alice", "jim", "joe", "fred" ] }
+            "gen_employee": { "users": [ "alice", "jim", "joe", "fred" ], "max_salary": 100000 }
         },
     "servers": {
             "rh":  {"hosts": ["rh1"],  "admin_role": "rh_admin",  "consult_role": "gen_employee"},
             "pay": {"hosts": ["pay1"], "admin_role": "pay_admin", "consult_role": "gen_employee"},
             "qa":  {"hosts": ["qa1"],  "admin_role": "qa_admin",  "consult_role": "gen_employee"},
             "it":  {"hosts": ["it1"],  "admin_role": "it_admin",  "consult_role": "gen_employee"}
-        }
+        },
+        "employees": [
+            {"name": "alice", "salary": 1500 },
+            {"name": "joe",   "salary": 300 },
+            {"name": "jim",   "salary": 300 },
+            {"name": "fred",  "salary": 200 }
+        ]
 }
