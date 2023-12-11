@@ -2,6 +2,9 @@
 
 # Based on https://docs.docker.com/engine/install/
 # - dropped ansible due to 'NoneType' errors !!
+#
+#DOCKER_USER=student
+DOCKER_USER=wasadmin
 
 die() { echo "$0: die - $*" >&2; exit 1; }
 
@@ -85,7 +88,7 @@ INITIAL_SETUP() {
     SETUP_CLEAN
     SETUP_ADD_DOCKER_REPO
     SETUP_INSTALL_DOCKER
-    SETUP_ENABLE_DOCKER_USERS ubuntu student
+    SETUP_ENABLE_DOCKER_USERS ubuntu $DOCKER_USER
     SETUP_GIT_CLONE
 }
 
