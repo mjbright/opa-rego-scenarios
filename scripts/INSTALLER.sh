@@ -100,6 +100,7 @@ USAGE() {
     echo
     grep -A 20 WHAT_INSTALL $0 | grep -v grep |
          grep -A 20 'case $ARG1' | grep -v case | grep ') ' | grep -v '*) ' |
+             grep -v ' *-' |
              sed -e 's/^ *//' -e 's/) /\t/' -e 's/;.*//' -e 's/^/- /'
              #sed -e 's/^ *//' -e 's/) .*//' -e 's/^/    /'
     echo
