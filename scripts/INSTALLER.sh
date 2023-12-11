@@ -79,7 +79,11 @@ SETUP_ENABLE_DOCKER_USERS() {
 
 SETUP_GIT_CLONE() {
     mkdir ~/src/
-    git clone https://github.com/mjbright/opa-rego-scenarios ~/src/opa-rego-scenarios 
+    if [ -d  ~/src/opa-rego-scenarios ]; then
+        GIT_PULL
+    else
+        git clone https://github.com/mjbright/opa-rego-scenarios ~/src/opa-rego-scenarios 
+    fi
 }
 
 INITIAL_SETUP() {
@@ -93,9 +97,9 @@ INITIAL_SETUP() {
 }
 
 GIT_PULL() {
-    cd ~/src/opa-rego-scenarios 
+    ( cd ~/src/opa-rego-scenarios 
         git pull
-    cd -
+      cd - )
 }
 
 USAGE() {
