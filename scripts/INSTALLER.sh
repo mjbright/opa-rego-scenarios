@@ -80,7 +80,7 @@ SETUP_GIT_CLONE() {
 }
 
 INITIAL_SETUP() {
-    sudo apt-get install -y curl wget vim
+    sudo apt-get install -y curl wget vim git
 
     SETUP_CLEAN
     SETUP_ADD_DOCKER_REPO
@@ -147,6 +147,20 @@ CURL_OPA() {
     echo "    curl -sL $URL" | tee $RC; echo; echo "# OR you can souce $RC"
 }
 
+SEND_SCRIPT() {
+    VERSION_FILE=$( dirname $( readlink -f $0 ) )/.INSTALLER.sh.version
+    if [ ! -f $VERSION_FILE ]; then
+        VERSION=1
+    else
+        let VERSION=1+$( cat $VERSION_FILE )
+    fi
+    echo $VERSION > $VERSION_FILE
+
+    echo "URL to download script:"
+    curl --upload-file $0 https://transfer.sh/INSTALLER_v${VERSION}.sh
+    echo
+}
+
 [ $# -eq 0 ] && {
      USAGE; die "Missing option - what do you want to install ?"
  }
@@ -160,6 +174,8 @@ while [ $# -ne 0 ]; do
          opa) CURL_OPA;;
      conftest) CURL_CONFTEST;;
        regal) CURL_REGAL;;
+
+       -send) SEND_SCRIPT;;
 
        -amd*) ARCH=amd64;;
         -x86) ARCH=amd64;;
