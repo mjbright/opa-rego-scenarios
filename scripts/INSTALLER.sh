@@ -74,13 +74,25 @@ SETUP_ENABLE_DOCKER_USERS() {
     done
 }
 
+SETUP_GIT_CLONE() {
+    mkdir ~/src/
+    git clone https://github.com/mjbright/opa-rego-scenarios ~/src/opa-rego-scenarios 
+}
+
 INITIAL_SETUP() {
+    sudo apt-get install -y curl wget vim
+
     SETUP_CLEAN
     SETUP_ADD_DOCKER_REPO
     SETUP_INSTALL_DOCKER
     SETUP_ENABLE_DOCKER_USERS ubuntu student
+    SETUP_GIT_CLONE
+}
 
-    sudo apt-get install -y curl wget vim
+GIT_PULL() {
+    cd ~/src/opa-rego-scenarios 
+        git pull
+    cd -
 }
 
 USAGE() {
@@ -135,7 +147,6 @@ CURL_OPA() {
     echo "    curl -sL $URL" | tee $RC; echo; echo "# OR you can souce $RC"
 }
 
-
 [ $# -eq 0 ] && {
      USAGE; die "Missing option - what do you want to install ?"
  }
@@ -145,6 +156,7 @@ while [ $# -ne 0 ]; do
     ARG1=$1
     case $ARG1 in
         init) INITIAL_SETUP;;
+         git) GIT_PULL;;
          opa) CURL_OPA;;
      conftest) CURL_CONFTEST;;
        regal) CURL_REGAL;;
